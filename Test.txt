@@ -1,0 +1,212 @@
+*** Settings ***
+Library           Selenium2Library
+
+*** Test Cases ***
+testcase1_default
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    Close Browser
+
+testcase2_宝贝_default
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    Click Element    xpath=//*[@id="J_SearchTab"]/ul/li[1]
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    Sleep     5
+    Close Browser
+
+testcase3_宝贝_Chinese
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    牛仔裤
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='牛仔裤_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase4_宝贝_English
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='Hello_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase5_宝贝_digital
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    3412341234123
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='3412341234123_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase6_宝贝_HTML
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    <div class="search-combobox" aria-pressed="false" id="ks-component286"> <div class="search-combobox-input-wrap"> <input id="q" name="q" aria-label="请输入搜索文字" accesskey="s" autofocus="autofocus" autocomplete="off" class="search-combobox-input" aria-haspopup="true" aria-combobox="list" role="combobox" x-webkit-grammar="builtin:translate" tabindex="0" aria-owns="ks-component349" aria-expanded="false"> </div> </div>
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='<div class="search-combobox" aria-pressed="false" id="ks-component286"> <div class="search-combobox-input-wrap"> <input id="q" name="q" aria-label="请输入搜索文字" accesskey="s" autofocus="autofocus" autocomplete="off" class="search-combobox-input" aria-haspopup="true" aria-combobox="list" role="combobox" x-webkit-grammar="builtin:translate" tabindex="0" aria-owns="ks-component349" aria-expanded="false"> </div> </div>_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase7_宝贝_Javascript
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    console.log("a");
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='console.log("a");_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase8_宝贝_Javascript2
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    <script>alert(“Attack!”)</script>
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='<script>alert(“Attack!”)</script> _淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase9_宝贝_NULL
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    NULL
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='NULL _淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase10_宝贝_NULL2
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    null
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='null _淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase11_宝贝_special
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    #%#&**@(&(*&(
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='#%#&**@(&(*&(_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase12_宝贝_special2
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    ｆａｄｆａｄｆａｄｆａｓｄｆｓｄｆｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆｓａｄｆｓａｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆ
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='ｆａｄｆａｄｆａｄｆａｓｄｆｓｄｆｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆｓａｄｆｓａｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆａｓｄｆ_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase13_宝贝_special3
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    地方发达大阿斯顿发斯蒂芬
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='地方发达大阿斯顿发斯蒂芬_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase14_宝贝_special4
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    地方发达大阿斯顿发斯蒂芬
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='地方发达大阿斯顿发斯蒂芬_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase15_宝贝_special5
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生发送到发送到发送到发送到发送到发送到发大解放啦时间段发生_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase16_宝贝_special6
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    input text    xpath=//*[@id="q"]    发生的发生43#$%2423434
+    Sleep     5
+    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    ${title}    Get Title
+    RUN Keyword IF    ${title}=='发生的发生43#$%2423434_淘宝搜索'
+    \    log    pass
+    Sleep     5
+    Close Browser
+
+testcase17_宝贝_1000time
+    Open Browser    https://www.taobao.com/    firefox
+    Maximize browser Window
+    Sleep    5
+    :FOR    ${n}    IN RANGE    1    2
+    \    Click Element    xpath=//*[@id="J_SearchTab"]/ul/li[1]    fsdfasdfasdf
+    \    Sleep    5
+    \    Click Element    xpath=//*[@id="J_TSearchForm"]/div[1]/button
+    \    Sleep    5
+    Close Browser
